@@ -60,6 +60,7 @@ plt.tight_layout()
 plt.show()
 ```
 
+![python_screenshot](https://github.com/user-attachments/assets/fc45fa9d-3497-41bc-8a56-e061fc6f355a)
 
 ## Executive Summary 
 
@@ -89,6 +90,7 @@ Shipments with discounts over 10% showed a sudden increase in delay rates. This 
 #### Impact of Warehouse Block on Shipping Mode Delays
 The visualizations showed the following. [View here](https://public.tableau.com/app/profile/hyun.jin.ahn3409/viz/ShipmentManagementDataAnalysis/Dashboard3)
 
+![Dashboard_screenshot](https://github.com/user-attachments/assets/f83324b3-2306-4e6e-b043-212a2f80ff63)
 
 
 - **High-Importance Products and Ship Mode**: High-importance products shipped via Ship mode exhibited the highest delay rates, particularly from Warehouse Blocks B, D, and F. This suggests that, despite being priority shipments, they are facing operational challenges that hinder timely delivery when shipped through this mode.
