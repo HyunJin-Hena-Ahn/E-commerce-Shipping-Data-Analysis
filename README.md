@@ -14,9 +14,9 @@ Dashboard can be seen [here](https://public.tableau.com/app/profile/hyun.jin.ahn
 ## Background and Overview
 
 This project investigates e-commerce shipment data to uncover insights that can help optimize shipment performance and improve delivery efficiency. The analysis focuses on shipment delays, their correlation with discounts, product importance, and shipping modes. The ultimate goal is to understand key operational bottlenecks and recommend improvements to enhance shipping efficiency.
-- Shipments with discounts above 10% face operational bottlenecks leading to 100% delays.
-- High-importance products are disproportionately delayed in Ship and Road modes.
-- Specific warehouse blocks (B, D, F) contribute to the highest delay rates.
+- Shipments with discounts above 10% face operational bottlenecks leading to 100% delays, pointing to severe operational inefficiencies.
+- High-priority products are disproportionately delayed, especially in Ship and Road modes, indicating prioritization and resource allocation issues.
+- Specific warehouse blocks, notably A and B consistently contribute to the highest delay rates, emphasizing the need for targeted process improvements.
 
 ## Data Structure and Preprocessing 
 
@@ -65,9 +65,9 @@ plt.show()
 ## Executive Summary 
 
 The analysis revealed several key insights into shipping delays and performance.
-- **Delay Rates and Discounts:** Shipments with discounts above 10% experienced 100% delays, indicating a significant operational bottleneck for these shipments.
-- **High-Importance Products:** Contrary to expectations, high-importance products faced the highest delay rates across all shipping modes, highlighting the challenges in prioritizing critical shipments.
-- **Mode and Warehouse Block Impact:** Specific warehouse blocks and shipping modes exhibited higher delay rates for high-importance products, suggesting areas for operational improvements.
+- **Delay Rates and Discounts:** Shipments with discounts above 10% experienced 100% delays, indicating a significant operational bottleneck. These delays may stem from the bulk processing of discounted items and inadequate prioritization strategies.
+- **High-Importance Products:** Contrary to expectations, high-priority products face the highest delays across Ship and Road modes, highlighting the challenges in prioritizing critical shipments.
+- **Mode and Warehouse Block Impact:** Specific warehouse blocks and shipping modes exhibited higher delay rates for high-importance products, suggesting areas for operational improvements.In Road Mode (Block A), high-priority products experience delays of up to 81%, the highest across all combinations. In Ship Mode (Block B), High-priority products face 72% delays, further emphasizing inefficiencies in Ship mode operations.
 
 The insights are aimed at identifying areas for process optimization, improving shipment efficiency, and recommending changes on shipping operations to enhance performance.
 ## Insights Deep Dive 
@@ -83,7 +83,7 @@ FROM `optimizing-delivery-efficiency.Ecommerce_shipping_data.shipping`
 GROUP BY Discount_offered
 ORDER BY Discount_offered ASC;
 ```
-Shipments with discounts over 10% showed a sudden increase in delay rates. This could be due to operational bottlenecks, such as bulk processing of discounted items or increased shipment volume.
+Shipments with discounts exceeding 10% experience a significant surge in delays, reaching 100%. These delays may result from overloaded bulk processing systems or insufficient resource allocation for discounted shipments.
 
 **Key Question: Are high-discount shipments under-prioritized, or is there increased complexity with these shipments?**
 
@@ -93,10 +93,12 @@ The visualizations showed the following. [View here](https://public.tableau.com/
 ![Dashboard_screenshot](https://github.com/user-attachments/assets/f83324b3-2306-4e6e-b043-212a2f80ff63)
 
 
-- **High-Importance Products and Ship Mode**: High-importance products shipped via Ship mode exhibited the highest delay rates, particularly from Warehouse Blocks B, D, and F. This suggests that, despite being priority shipments, they are facing operational challenges that hinder timely delivery when shipped through this mode.
-- **High-Importance Products and Road Mode**: Similarly, Road mode also showed significant delays for high-importance products, with Warehouse Blocks A and C contributing to the highest delays. This indicates that Road mode is not as effective for handling high-importance shipments, even though it generally performs better than Ship mode for non-priority products.
+- **Road Mode in Block A**: High-priority products face delays of 81%, the highest across all combinations.
+- **Ship Mode in Block B**: High-priority products experience 72% delays, reflecting inefficiencies in shipping operations.
+- **Flight Mode in Block C**: Medium-priority products exhibit delays of 65%, highlighting prioritization challenges.
+
 #### Product Importance and Delivery Rate
-High-importance products were found to be more delayed than lower priority ones, even though they should have been prioritized. This suggests a need for a refined approach to managing these critical shipments, possibly involving dedicated processing lanes or more advanced tracking mechanisms.
+High-priority products face greater delays compared to low- and medium-priority products, revealing systemic inefficiencies in prioritization.
 ```sql
 SELECT
     Product_importance,
@@ -113,9 +115,9 @@ ORDER BY
 ## Recommendations 
 
 Based on the analysis, the following recommendations are provided to optimize shipping operations and reduce delays. 
-- **Analyze and Address Delays in High-Discount Shipments.** Shipments with discounts above 10% are experiencing 100% delays. To address this, it's necessary to adjust prioritization strategies for discounted shipments and streamline processes for bulk orders. Additionally, investigate whether specific warehouse blocks or shipping modes are contributing to these delays.
-- **Enhance Prioritization for High-Importance Products.** High-importance products face significant delays in both Ship and Road modes. A solution would be to implement dedicated routes and processing teams for these critical shipments to ensure they are prioritized and delivered on time.
-- **Improve Warehouse Blocks and Operational Processes.** Delays are concentrated in specific warehouse blocks: B, D, F for Ship mode, and A, C for Road mode. Optimizing workflows and staffing in these blocks can significantly reduce delays and improve delivery efficiency for both high-priority and discounted shipments.
+- **Analyze and Address Delays in High-Discount Shipments.** Shipments with discounts above 10% are experiencing 100% delays. To address this, it's necessary to adjust prioritization strategies for discounted shipments and streamline processes for bulk orders. 
+- **Enhance Prioritization for High-Importance Products.** High-priority products face significant delays, especially in Road Mode (Block A, 81%) and Ship Mode (Block B, 72%). A solution would be to implement dedicated routes and processing teams for these critical shipments to ensure they are prioritized and delivered on time.
+- **Improve Warehouse Blocks and Operational Processes.** Delays are concentrated in specific warehouse blocks: B, F for Ship mode, and A, C for Road mode. Optimizing workflows and staffing in these blocks can significantly reduce delays and improve delivery efficiency for both high-priority and discounted shipments. A solution would be to redistribute workloads to balance shipment volume across warehouse blocks and reduce congestion.
 
 #### Data Source 
 [View here](https://www.kaggle.com/datasets/prachi13/customer-analytics)
